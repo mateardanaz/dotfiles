@@ -1,0 +1,201 @@
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+
+snippet it "Individual item" b
+\item $0
+endsnippet
+
+snippet beg "begin" bA
+\\begin{$1}
+	$0
+\\end{$1}
+endsnippet
+
+snippet bf "negrita" i
+\textbf{$1}$0
+endsnippet
+
+snippet ita "italics" i
+\textit{$1}$0
+endsnippet
+
+snippet clase "template para clase" b
+\documentclass[12pt,a4paper,openany]{book}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{parskip} %poder escribir en parrafos sin necesidad de //
+\usepackage[utf8]{inputenc}
+\usepackage{soul} %highlight con \hl{}
+\usepackage[stable]{footmisc}
+\usepackage{appendix} %apendice con \appendix
+\usepackage{lipsum} %dummy text
+\usepackage{nonumonpart} %para que las partes en el formato no tengan el numero de pagina
+\usepackage[shortlabels]{enumitem}
+% para poder usar diferentes lables en las listas no numeradas. Shortlabels para que notenga que poner [label= el simbolito] y solo tenga que poner [el simbolito].
+\setlist[description]{style=nextline} %para que las descripciones empiezen con un espacio digamos.
+\usepackage{graphicx} %poder poner imagenes
+\usepackage[margin=2cm]{geometry} %margenes
+\usepackage[Lenny]{fncychap} %capitulos bonitos
+%lenny glenn conny rejne bjarne Bjornstrup
+\usepackage{dirtytalk} %captions de \say{}
+\usepackage{fancyhdr} %con esto hago la barrita de arriba
+\usepackage{float} %para que pueda encajar las imagenes donde se me cante el culo con \nosequemierda[H]
+\usepackage[spanish]{babel} %traducir cosas al español como section-seccion chapter-capitulo
+\usepackage{microtype} %letras mas bonitas
+\usepackage[svgnames]{xcolor}
+\usepackage{framed} %para poder hacer lo de \begin{shaded}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref} %links en todo 
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=${1:color},  %choose some color if you want links to stand out
+}
+
+\usepackage[spanish]{cleveref} %nueva manera de poner referencias sin tener que especificar el nombre, tiene que estar despues de hyperref
+
+\setcounter{secnumdepth}{3} %para hacer que las \subsubsections aparezcan numeradas
+\setcounter{tocdepth}{3} %para hacer que las \subsubsections aparezcan en el toc
+
+\definecolor{shadecolor}{named}{LightGray} %supongo para el \begin{shaded}
+
+%estilo de la pagina (barrita de arriba y el numero de pagina)
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\hyperlink{MyToc}{${2:nombre de la clase}}} %el Mytoc es para que haga link a el toc
+\rhead{Mateo Ardanaz}
+\lhead{Universidad católica}
+\rfoot{\thepage}
+\raggedright
+
+\begin{document}
+\begin{titlepage}
+      \hypertarget{MyToc} %aca vemos el link al toc
+      \tableofcontents
+      \thispagestyle{empty} %para que no aparezca el numero de pagina
+\end{titlepage}
+
+\input{${3:nombre del documento}}
+
+\end{document}
+endsnippet
+
+snippet fig "figure enviroment" bA
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=$1\textwidth]{$2}
+    \caption{$3}
+    \label{$2}
+\end{figure}
+
+$0
+endsnippet
+
+snippet ite "itemize" b
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet enu "itemize" b
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet multicol "colum enum/item" bA
+\begin{multicols}{${1:cantidad de columnas}}
+\begin{${2:enumerate/itemize}}
+	\item $0
+\end{$2}
+\end{multicols}
+endsnippet
+
+snippet sec "section" b
+\section{$1}
+
+$0
+endsnippet
+
+snippet ssec "subsection" b
+\subsection{$1}
+
+$0
+endsnippet
+
+snippet cha "chapter" b
+\chapter{$1}
+
+$0
+endsnippet
+
+snippet part "part" b 
+\part{$1}
+
+$0
+endsnippet
+
+snippet und "underline" i
+\underline{$1}$0
+endsnippet
+
+snippet up "usepackage" b 
+\usepackage$2{$1}
+$0
+endsnippet
+
+snippet cite "citation" i 
+\parencite$2{$1}$0
+endsnippet
+
+snippet tcite "textcite" i
+\textcite$2{$1}$0
+endsnippet
+
+snippet lab "label" i
+\label{$1}$0
+endsnippet
+
+snippet ref "reference" i
+\ref{$1}$0
+endsnippet
+
+snippet cref "reference" i
+\cref{$1}$0
+endsnippet
+
+snippet say "cite" i
+\say{$1}$0
+endsnippet
+
+snippet foot "footnote" i 
+\footnote{$1}$0
+endsnippet
+
+snippet gls "Glossary" i 
+\gls{$1}$0
+endsnippet
+
+snippet gadd1 "Glossary entry" i
+\newglossaryentry{${1:nombre}}
+{
+	name=${2:nombre posta},
+	description={${3:descripcion}}
+}
+
+$0
+endsnippet
+
+snippet gadd "long glossary entry" i 
+\longnewglossaryentry{${1:nombre}}
+{name={${2:nombre posta}}}
+{%
+${3:descripcion}
+}
+
+$0
+endsnippet

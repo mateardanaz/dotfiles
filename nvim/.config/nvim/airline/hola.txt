@@ -1,0 +1,1 @@
+Creo que esto hace que la tabline funciona lento por esto

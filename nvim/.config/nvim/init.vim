@@ -1,0 +1,10 @@
+source $HOME/.config/nvim/vim-plug/plugins.vim
+source $HOME/.config/nvim/configs/configs.vim
+source $HOME/.config/nvim/keybinds/keybinds.vim
+source $HOME/.config/nvim/easymotion/easymotion.vim
+"source $HOME/.config/nvim/airline/airline.vim
+source $HOME/.config/nvim/colorscheme/colorscheme.vim
+source $HOME/.config/nvim/coc/coc.vim
+source $HOME/.config/nvim/fzf/fzf.vim
+"source $HOME/.config/nvim/nerdtree/nerdtree.vim
+source $HOME/.config/nvim/lightline/lightline.vim
